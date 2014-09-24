@@ -27,6 +27,17 @@
 
 <%= link_to "Write a Review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %><p>
 
+<br>
+<br>
+
+<iframe
+  width="230"
+  height="230"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBxHu48N_AdCyj0122TRrzHC0LolPskGZY
+    &q=<%= @restaurant.address.parameterize %>&zoom=14">
+</iframe>
+
 </div>
 
 <div class="col-md-9">
@@ -67,8 +78,10 @@
 </div>
 </div>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link" %> |
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link" %> |
 <%= link_to 'Back', restaurants_path, class: "btn btn-link" %>
+<% end %>
 
 <script>
   $('.star-rating').raty({path: 'https://s3.amazonaws.com/railsyelptut/stars/',
